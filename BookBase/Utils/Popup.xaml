@@ -1,0 +1,80 @@
+﻿<UserControl x:Class="BookBase.Utils.Popup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:local="clr-namespace:BookBase.Utils"
+             x:Name="popup"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Template>
+        <ControlTemplate TargetType="{x:Type UserControl}">
+            <Grid>
+                <Grid.Background>
+                    <SolidColorBrush Color="#000000" Opacity="0.6" />
+                </Grid.Background>
+                <Border CornerRadius="4"
+                            Background="White"
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Top"
+                            Margin="0 30 0 0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Border BorderThickness="1"
+                                BorderBrush="#e5e5e5"
+                                CornerRadius="4 4 0 0"
+                                Grid.Row="0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <!-- Popup title -->
+                                <Border Padding="10"
+                                    Grid.Column="0">
+                                    <TextBlock Text="{Binding Title, 
+                                           ElementName=popup}"
+                                           Foreground="#666464"
+                                           VerticalAlignment="Center" />
+                                </Border>
+
+                                <!-- Close button -->
+                                <Button Content="X"
+                                    Style="{x:Null}"
+                                    Cursor="Hand"
+                                    Grid.Column="1"
+                                    Command="{Binding Close, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="Transparent"
+                                                    Padding="10 4">
+                                                <iconPacks:PackIconBootstrapIcons x:Name="content"
+                                                                                  Kind="X"
+                                                                                  Foreground="#cccccc"
+                                                                                  Width="15"
+                                                                                  VerticalAlignment="Center"/>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="content" Property="Foreground" Value="#808080" />
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                            </Grid>
+                        </Border>
+                        <Border Padding="10 7"
+                                Grid.Row="1">
+                            <ContentPresenter />
+                        </Border>
+                    </Grid>
+                </Border>
+            </Grid>
+        </ControlTemplate>
+    </UserControl.Template>
+</UserControl>

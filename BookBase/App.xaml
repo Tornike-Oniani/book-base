@@ -1,0 +1,33 @@
+﻿<Application x:Class="BookBase.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:BookBase"
+             xmlns:vm="clr-namespace:BookBase.ViewModels"
+             xmlns:view="clr-namespace:BookBase.Views"
+             StartupUri="Views/MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/Styles.xaml" />
+
+                <ResourceDictionary>
+                    <DataTemplate DataType="{x:Type vm:BooksViewModel}">
+                        <view:BooksView />
+                    </DataTemplate>
+
+                    <DataTemplate DataType="{x:Type vm:BookmarkNavigatorViewModel}">
+                        <view:BookmarkNavigator />
+                    </DataTemplate>
+                    
+                    <DataTemplate DataType="{x:Type vm:BookmarkListViewModel}">
+                        <view:BookmarkListView />
+                    </DataTemplate>
+
+                    <DataTemplate DataType="{x:Type vm:BookmarkViewModel}">
+                        <view:BookmarkView />
+                    </DataTemplate>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
